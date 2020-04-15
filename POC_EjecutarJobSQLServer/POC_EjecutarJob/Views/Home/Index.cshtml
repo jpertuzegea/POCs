@@ -1,0 +1,55 @@
+﻿@model  POC_EjecutarJob.Models.ModelJob
+ 
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="row">
+
+    <div class="col-md-4">
+
+        <br />
+        <br />
+        <br />
+
+        @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+        {
+            <br />
+            <hr />
+            <br />
+
+            <div class="form-group">
+                <label>Base de Datos</label>
+                <select class="form-control" id="BD" name="BD" onchange="GetComboJobs()">
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Jobs</label>
+                <select class="form-control" id="NombreJob" name="NombreJob">
+                </select>
+            </div>
+
+            <br />
+
+            <div class="form-group">
+                <input type="submit" value="Ejecutar" class="btn btn-primary">
+            </div>
+        }
+         
+        @{ if (ViewBag.Mensaje != "Job Ejecutado con exito")
+            {
+                if (ViewBag.Mensaje != null)
+                {
+                    <label><font color="red">Job No Ejecutado</font></label>
+                }
+            }
+            else
+            {
+                <label><font color="green">Job Ejecutado con exito </font></label>
+            } 
+        }
+
+    </div>
+
+</div>
