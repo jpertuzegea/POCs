@@ -19,7 +19,7 @@ namespace POC_GuardarArchivoEnCarpetaCompartida
             {
                 lock (ObjSave)
                 {
-                    string targetPath = @"//192.168.99.135/HeadsCompartida/JoRgUeMunita/";
+                    string targetPath = @"//192.168.99.135/CompartidaEquipo/JorgeCompartida/";
                     byte[] FileByteArray = Convert.FromBase64String(FileBase64);
                     File.WriteAllBytes(targetPath + FileName, FileByteArray);
                     return true;

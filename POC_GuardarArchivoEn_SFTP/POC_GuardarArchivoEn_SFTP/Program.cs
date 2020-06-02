@@ -9,8 +9,8 @@ namespace POC_GuardarArchivoEn_SFTP
             Console.WriteLine("Prueba Guardado de Archivo en Base64 en SFTP");
 
             Bussines Bussines = new Bussines();
-
-            if (Bussines.SFTPFileUpload())
+            //Bussines.SFTPFileUploadIFormFile(File);
+            if (Bussines.SFTPFileUploadBase64())
             {
                 Console.WriteLine("\n Archivo GUardado Con Exito");
             }
