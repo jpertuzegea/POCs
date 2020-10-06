@@ -24,6 +24,10 @@ namespace POC_EjecutarJob.Controllers
                 ExeJob.CommandText = "msdb.dbo.sp_start_job"; 
                 string SQL = $"SELECT job.job_id, notify_level_email, name, enabled, description, step_name, command, server, database_name FROM msdb.dbo.sysjobs job INNER JOIN msdb.dbo.sysjobsteps steps ON job.job_id = steps.job_id WHERE job.enabled = 1 and database_name ='{DataBaseName}' order by name";
 
+				// Este es el Query para saber si un Job aun esta ejecutandose 
+				//SELECT 1 FROM msdb.dbo.sysjobs J 
+				//JOIN msdb.dbo.sysjobactivity A ON A.job_id = J.job_id WHERE J.name = 'bonos_CargueBonos' 
+				//AND A.run_requested_date IS NOT NULL AND A.stop_execution_date IS NULL
 
                 List<string> Lista = new List<string>();
 

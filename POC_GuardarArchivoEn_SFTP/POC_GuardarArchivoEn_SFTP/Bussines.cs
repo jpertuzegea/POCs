@@ -73,7 +73,11 @@ namespace POC_GuardarArchivoEn_SFTP
                     {
                         using (var Memory = File.OpenReadStream())
                         {
-                            client.BufferSize = (uint)Memory.Length;
+                            if ((uint)Memory.Length > 32768)
+                            {
+                                client.BufferSize = (uint)Memory.Length; // El tamaño por defecto es 32768 bytes 
+                            }
+
                             client.UploadFile(Memory, DirectorySFTP + FileName, false); // el ultimo parametro es para sobre escribir el arhivo si existe 
                             Respuesta = true;
                         }

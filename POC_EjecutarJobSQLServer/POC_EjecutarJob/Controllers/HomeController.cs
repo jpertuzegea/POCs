@@ -77,13 +77,6 @@ namespace POC_EjecutarJob.Controllers
             }
         }
 
-      
-
-
-
-
-
-
-
+       
     }
 }
