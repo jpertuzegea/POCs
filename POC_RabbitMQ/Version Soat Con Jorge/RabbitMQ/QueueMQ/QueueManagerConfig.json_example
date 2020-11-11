@@ -1,0 +1,26 @@
+{
+  "hostName": "localhost",
+  "virtualHost": "/",
+  "userName": "IntegrationTest",
+  "password": "IntegrationTest",
+  "port": "5672",
+  "serialization": "None",
+
+  "useSSL": "false",
+  "MaxRabbitMQReconnectionAttempts": 50,
+  "IntervalBetweenReconnectionAttempts": 1000, /*Milisegundos*/
+  "sourceEvent": "Jorge.SubscriberQueue",
+  "Queues": [
+    {
+      "QueueName": "LogsQueue",
+      "PreFetchCount": "10",
+      "PreFetchCountFail": "5",
+      "TimeRetry": "50"
+    }
+  ],
+  "Contingency": {
+    "ConfigStatus": "URL to FileStatus",
+    "FailContingency": "URL to FileContingency", //Default DB
+    "EnableContingecy": false
+  }
+}

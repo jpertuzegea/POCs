@@ -1,0 +1,9 @@
+
+
+Se debe sacar el servidor afectado de RabbitMQ del balanceo para poder tranajar los siguientes comandos
+
+1- Detener el servicio desde el administrador de servicios de windows 
+2- rabbitmq-service stop 
+3- rabbitmq-service remove
+4- rabbitmq-service install
+5- rabbitmq-service start 

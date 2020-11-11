@@ -1,0 +1,10 @@
+﻿{
+  "profiles": {
+    "POC_RabbitMQConsumer": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}
