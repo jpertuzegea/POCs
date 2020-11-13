@@ -6,7 +6,7 @@ namespace POC_Queue.Enum
 {
     public enum EnumQueue
     {
-        PocJorgeQueue,
+        PocJorgeQueuexx,
         Principal,
         RetryNumber
     }

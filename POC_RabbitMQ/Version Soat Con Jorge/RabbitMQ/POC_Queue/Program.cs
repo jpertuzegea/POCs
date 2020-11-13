@@ -6,6 +6,7 @@ using POC_Queue.Models;
 using QueueMQ;
 using QueueMQ.Helper;
 using System;
+using System.Diagnostics;
 using System.Linq;
 using Utilities.Helper;
 
@@ -16,6 +17,8 @@ namespace POC_Queue
         private static AppSettings _appSettings; // esto no debe ser static
         private static ConnectionMQ _cmq; // esto no debe ser static
         private static int _retryNumber; // esto no debe ser static
+
+        public static Stopwatch stopWath = new Stopwatch();// Instancia Cronometro
 
 
         public static AppSettings AppSettings
@@ -54,18 +57,38 @@ namespace POC_Queue
             // --------------------------- ctor ---------------------------
 
 
+            stopWath.Start(); // Inica Cronometro 
+
+            int CantidadTotal = 63629;
+
             Persona Persona = new Persona();
             Persona.cedula = 123;
             Persona.Nombre = "Katherine ";
             Persona.Apellido = "Forero";
             Persona.Telefono = "312";
-            Persona.ModelId = Guid.NewGuid().ToString();
-
-           
+            
 
             try
             {
-                QueueHelper.instance.PutOnQueueJsonByQueue<Persona>("Principal", JsonConvert.SerializeObject(Persona), EnumQueue.PocJorgeQueue.ToString());// , (int)retryCount + 1);
+
+                for (int i = 0; i < CantidadTotal; i++)
+                {
+                    Persona.ModelId = Guid.NewGuid().ToString();
+                    QueueHelper.instance.PutOnQueueJsonByQueue<Persona>("Principal", JsonConvert.SerializeObject(Persona), EnumQueue.PocJorgeQueuexx.ToString());// , (int)retryCount + 1);
+                    Console.WriteLine($"Registro Encolado: { i }");
+                }
+
+                stopWath.Stop();// Finaliza Cronometro
+
+
+                // ---------------------------- Cronometro ----------------------------
+                Console.WriteLine();
+                Console.WriteLine();               
+                var DuracionSeg = stopWath.ElapsedMilliseconds;// / 1000.0;// calcula tiempo rascurrido en Mili-segundos
+                Console.WriteLine($"Tiempo Transcurrido en Mili-Segundos: {DuracionSeg}");
+                Console.WriteLine(" ------------------------------------------ ");
+                // ---------------------------- Cronometro ----------------------------
+
             }
             catch (Exception Ex)
             {

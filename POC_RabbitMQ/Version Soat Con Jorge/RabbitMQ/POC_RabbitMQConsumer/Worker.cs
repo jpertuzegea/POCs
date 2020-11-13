@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -26,7 +27,9 @@ namespace POC_RabbitMQConsumer
         private QueueConfiguration NotificaionQueue = null;
 
         private BLL_Poc BLL_Poc = null;
-
+ 
+        private static int CantidadProcesada = 0;
+        
         public static AppSettings AppSettings
         {
             get
@@ -60,7 +63,7 @@ namespace POC_RabbitMQConsumer
             // LogHelper.SingleInstance.SetConfiguration(AppSettings.EventViewer);
             QMLogHelper.SingleInstance.SetConfiguration(AppSettings.EventViewer);
 
-            NotificaionQueue = _cmq.QueueConfigurations.Where(q => q.QueueName == EnumQueue.PocJorgeQueue.ToString()).First();
+            NotificaionQueue = _cmq.QueueConfigurations.Where(q => q.QueueName == EnumQueue.PocJorgeQueuexx.ToString()).First();
 
             // Instancias de Business
             BLL_Poc = new BLL_Poc();
@@ -85,7 +88,12 @@ namespace POC_RabbitMQConsumer
         private IOutputModel ExecuteQueue(IInputModel arg, IDictionary<string, object> properties)
         {
             var model = (Persona)arg;
-            BLL_Poc.Procesar(model);
+            BLL_Poc.Procesar(model); 
+
+            CantidadProcesada = CantidadProcesada + 1;
+
+            Console.WriteLine($" Registro Procesado : {CantidadProcesada}");
+              
             return model;
         }
 

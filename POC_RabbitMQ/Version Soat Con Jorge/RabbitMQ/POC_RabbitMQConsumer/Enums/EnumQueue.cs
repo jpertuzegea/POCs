@@ -6,7 +6,7 @@ namespace POC_RabbitMQConsumer.Enums
 {
     public enum EnumQueue
     {
-        PocJorgeQueue,
+        PocJorgeQueuexx,
       
     }
 }
