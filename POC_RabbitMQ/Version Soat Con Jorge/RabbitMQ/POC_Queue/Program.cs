@@ -59,13 +59,13 @@ namespace POC_Queue
 
             stopWath.Start(); // Inica Cronometro 
 
-            int CantidadTotal = 63629;
+            int CantidadTotal = 1000;
 
             Persona Persona = new Persona();
-            Persona.cedula = 123;
-            Persona.Nombre = "Katherine ";
-            Persona.Apellido = "Forero";
-            Persona.Telefono = "312";
+            Persona.cedula = 123456789;
+            Persona.Nombre = "Jorge David ";
+            Persona.Apellido = "Pertuz Egea";
+            Persona.Telefono = "315 - 534 - 2264";
             
 
             try
