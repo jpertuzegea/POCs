@@ -10,7 +10,12 @@ namespace DAO
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=localhost;Database=POC_Seed_DB;Trusted_Connection=True;MultipleActiveResultSets=true");
+           
+            optionsBuilder.UseSqlServer(
+              "Server=localhost;Database=POC_Seed_DB;Trusted_Connection=True;MultipleActiveResultSets=true",
+              opts => opts.CommandTimeout((int)TimeSpan.FromMinutes(2).TotalSeconds)
+              );
+             
         } 
 
         public DbSet<Personas> Personas { get; set; }
