@@ -3,6 +3,7 @@ using Renci.SshNet;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Net;
 using System.Text;
 
 namespace POC_GuardarArchivoEn_SFTP
@@ -53,7 +54,7 @@ namespace POC_GuardarArchivoEn_SFTP
             {
                 Console.WriteLine("\nError --> " + Error.ToString());
                 return false;
-            } 
+            }
         }
 
 
@@ -65,7 +66,7 @@ namespace POC_GuardarArchivoEn_SFTP
             try
             {
                 lock (ObjUpload)
-                { 
+                {
                     var client = new SftpClient(HostSFTP, PortSFTP, UserNameSFTP, PasswordSFTP);
                     client.Connect();
 
@@ -93,9 +94,49 @@ namespace POC_GuardarArchivoEn_SFTP
             {
                 Console.WriteLine("\nError --> " + Error.ToString());
                 return false;
-            } 
+            }
         }
 
 
+        // Metodo que guarda un archivo en servidor FTP que es diferente a SFTP, ya que son protocolos diferentes
+        public bool FTPFileUpload()
+        {
+            string HostSFTP = "ftp://155.254.244.28/www.SIGECOR.somee.com";
+            int PortSFTP = 21;
+            string UserNameSFTP = "jpertuzegea";
+            string PasswordSFTP = @"39590321JoRgE.";
+            string DirectorySFTP = @"/Kathe/";
+
+            string FileBase64 = @"U2Vydmlkb3IgQkQgRGVzYXJyb2xsbyAtLT4gMTAuMTAwLjEwMi4zNw0KVXN1YXJpbyAtLT4gZGF0YWJhc2VzDQpDbGF2ZSAtLT4gZGF0YWJhc2VzDQoNCg0KUG9ydGFsDQpodHRwOi8vMTAuMTAwLjEwMi4xMzE6ODA4My9Db2xzdWJzaWRpby9EZWZhdWx0LmFzcHg/dGFiaWQ9MzYNClVzdWFyaW86IGRubmhvc3QNCkNsYXZlOiBjb2xvbWJpYQ0KDQoNCmh0dHBzOi8vZXZlcnRlY2luY0BkZXYuYXp1cmUuY29tL2V2ZXJ0ZWNpbmMvUGljYXNzby9fZ2l0L1BpY2Fzc28=";
+            string FileName = $"JorgePertuz_Prueba.txt";
+
+
+            bool Respuesta = false;
+            try
+            {
+                lock (ObjUpload)
+                {
+                    byte[] byteArray = Convert.FromBase64String(FileBase64);
+
+                    var PathFull = HostSFTP + DirectorySFTP + FileName;
+                    FtpWebRequest request = (FtpWebRequest)WebRequest.Create(PathFull);
+
+                    request.Method = WebRequestMethods.Ftp.UploadFile;
+
+                    request.Credentials = new NetworkCredential(UserNameSFTP, PasswordSFTP);
+
+                    Stream ftpStream = request.GetRequestStream();
+                    ftpStream.Write(byteArray, 0, byteArray.Length);
+                    ftpStream.Close();
+
+                }
+                return Respuesta;
+            }
+            catch (Exception Error)
+            {
+                Console.WriteLine("\nError --> " + Error.ToString());
+                return false;
+            }
+        }
     }
 }
