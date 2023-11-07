@@ -1,47 +1,35 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿
 
 using iTextSharp.text.pdf;
 using iTextSharp.text.pdf.parser;
 using System.Text;
- 
+
 
 // ----------------------------------------------------------------------------------
-string ruta = @"C:\Users\jpertuz\Desktop\PDFs\Impresion 000000000006945.pdf";
-string Result = parsePDFDocument(ruta);
-LeerPDFYGuardarLineaPorLineaEnTXT(ruta);
+//     Para esta POC se utiliza la libreria iTextSharp Version 5.5.13.3 
 // ----------------------------------------------------------------------------------
+string PathOrigin = @"./PDFs"; // Se debe configuar los archivos copiar siemore en ruta cuando se compila (propiedades)
+string PathDestinatary = @"./Procesados/";
 
- 
-// Lee documento PDF linea por linea y lo guarda en un txt
-void LeerPDFYGuardarLineaPorLineaEnTXT(string ruta)
+string[] files = Directory.GetFiles(PathOrigin); // Obtener archivos 
+
+foreach (string file in files)
 {
-    List<string> lineas = new List<string>();
-    PdfReader reader = new PdfReader(ruta);
-
-    int intPageNum = reader.NumberOfPages;
-    string[] words;
-    string linex;
-    string text;
-
-    for (int i = 1; i <= intPageNum; i++)
+    if (File.Exists(file))
     {
-        text = PdfTextExtractor.GetTextFromPage(reader, i, new LocationTextExtractionStrategy());
+        // Lee PDF linea por lina y retorna un string
+        string AllLinesDocument = ReadAllPDFDocumentLine_Line(file);
 
-        words = text.Split('\n');
-
-        for (int j = 0, len = words.Length; j < len; j++)
-        {
-            linex = Encoding.UTF8.GetString(Encoding.UTF8.GetBytes(words[j]));
-            lineas.Add(linex);
-        }
+        // Mueve el archivo a la ruta Procesado
+        var FileName = file.Replace(PathOrigin + "\\", "");
+        File.Move(file, PathDestinatary + FileName);
     }
-
-    File.WriteAllLines(@"C:\Users\jpertuz\Desktop\PDFs\Temp\DatosSalida.txt", lineas);
-
 }
 
+
+// ----------------------------------------------------------------------------------
 // Lee todo el documento PDF en prosa
-string parsePDFDocument(string filePath)
+string ReadAllPDFDocumentLine_Line(string filePath)
 {
     using (PdfReader read = new PdfReader(filePath))
     {
