@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33414.496
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "POC_ImpresionTermica", "POC_ImpresionTermica\POC_ImpresionTermica.csproj", "{65FE2BD2-A91F-48F7-973D-D31CA84C6608}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{65FE2BD2-A91F-48F7-973D-D31CA84C6608}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65FE2BD2-A91F-48F7-973D-D31CA84C6608}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65FE2BD2-A91F-48F7-973D-D31CA84C6608}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65FE2BD2-A91F-48F7-973D-D31CA84C6608}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9359CFB5-DA70-4070-8CA4-60D9DFE0F053}
+	EndGlobalSection
+EndGlobal
