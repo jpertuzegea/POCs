@@ -21,7 +21,8 @@ namespace POC_Ejecutar_Funciones_En_Paralelo
 
         public static Stopwatch stopWath = new Stopwatch();// Instancia Cronometro
 
-         
+
+
         static void Main(string[] args)
         {
             Console.WriteLine(" ------------------------------------------ ");
@@ -34,9 +35,37 @@ namespace POC_Ejecutar_Funciones_En_Paralelo
             Console.WriteLine("\n ------------------------------------------ ");
             Console.WriteLine("Fin POC");
             Console.WriteLine(" ------------------------------------------ ");
+
+            /*
+            ****************************************
+             OTRAS FORMAS DE PARALELISMO
+            ****************************************
+            _____________________________________________________________
+              MiLista.AsParallel()// probado con exito !!!
+                .WithDegreeOfParallelism(10) // Establecemos el número de hilos que ejecutarán las tareas en paralelo
+                .ForAll(x => // Ejecuta el bloque de codigo siguiente para cada uno de los items del la lista 
+                {  
+                // codigo a ejecutar
+                });
+            _____________________________________________________________
+
+            _____________________________________________________________
+            // Lista de IDs a guardar
+            List<int> ids = new List<int> { 1, 2, 3, 4, 5 };
+            // Crear una lista de tareas
+            List<Task> tasks = new List<Task>();
+            // Crear una tarea para cada ID
+            foreach (var id in ids)
+            {
+                tasks.Add(Task.Run(() => Guardar(id)));
+            }
+            // Esperar que todas las tareas terminen
+            await Task.WhenAll(tasks);
+            _____________________________________________________________
+             */
         }
 
-         
+
         private static void EjecutarPruebaSincrona()
         {
             Console.WriteLine("Ejecucion Prueba Sincrona");
@@ -59,12 +88,12 @@ namespace POC_Ejecutar_Funciones_En_Paralelo
         // Metodos Sincronos
         public static int Metodo1(int num)
         {
-            Thread.Sleep(1000); 
+            Thread.Sleep(1000);
             return 1;
         }
         public static string Metodo2(string data)
         {
-            Thread.Sleep(1000); 
+            Thread.Sleep(1000);
             return "2";
         }
         public static long Metodo3()
@@ -106,15 +135,15 @@ namespace POC_Ejecutar_Funciones_En_Paralelo
         public static async Task<int> MetodoAsincrono1(int num)
         {
             return await Task.Run(() =>
-             { 
+             {
                  Thread.Sleep(1000);
-                 return 1; 
+                 return 1;
              }); // .ContinueWith( () => { Mi otro proceso } // para ejecutar dependencia de proceos 
         }
         public static async Task<string> MetodoAsincrono2(string data)
         {
             return await Task.Run(() =>
-            { 
+            {
                 Thread.Sleep(1000);
                 return "2";
             }); // .ContinueWith( () => { Mi otro proceso } // para ejecutar dependencia de proceos 
@@ -122,13 +151,11 @@ namespace POC_Ejecutar_Funciones_En_Paralelo
         public static async Task<long> MetodoAsincrono3()
         {
             return await Task.Run(() =>
-            { 
+            {
                 Thread.Sleep(1000);
                 return 3;
             }); // .ContinueWith( () => { Mi otro proceso } // para ejecutar dependencia de proceos 
         }
-
-
 
     }
 }
