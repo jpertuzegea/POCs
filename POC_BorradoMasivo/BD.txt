@@ -1,0 +1,43 @@
+ CREATE DATABASE PRUEBA;
+  USE PRUEBA;
+  
+  CREATE TABLE [Departament](
+	[DepartamentId] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [varchar](50) NULL,
+	[State] [tinyint] NOT NULL,
+	PRIMARY KEY (DepartamentId)
+	);
+	DBCC CHECKIDENT ([Departament], RESEED,1); -- obliga a que el contador de llave primaria empiece en 1 
+	  
+INSERT [Departament] VALUES ( N'Amazonas', 1); 
+INSERT [Departament] VALUES ( N'Antioquia', 1); 
+INSERT [Departament] VALUES ( N'Arauca', 1); 
+INSERT [Departament] VALUES ( N'Atlántico', 1); 
+INSERT [Departament] VALUES ( N'Bolívar', 1); 
+INSERT [Departament] VALUES ( N'Boyacá', 1); 
+INSERT [Departament] VALUES ( N'Caldas', 1); 
+INSERT [Departament] VALUES ( N'Caquetá', 1); 
+INSERT [Departament] VALUES ( N'Casanare', 1); 
+INSERT [Departament] VALUES ( N'Cauca', 1); 
+INSERT [Departament] VALUES ( N'Cesar', 1); 
+INSERT [Departament] VALUES ( N'Chocó', 1); 
+INSERT [Departament] VALUES ( N'Córdoba', 1); 
+INSERT [Departament] VALUES ( N'Cundinamarca', 1); 
+INSERT [Departament] VALUES ( N'Guainía', 1); 
+INSERT [Departament] VALUES ( N'Guaviare', 1); 
+INSERT [Departament] VALUES ( N'Huila', 1); 
+INSERT [Departament] VALUES ( N'La Guajira', 1); 
+INSERT [Departament] VALUES ( N'Magdalena', 1); 
+INSERT [Departament] VALUES ( N'Meta', 1); 
+INSERT [Departament] VALUES ( N'Nariño', 1); 
+INSERT [Departament] VALUES ( N'Norte de Santander', 1); 
+INSERT [Departament] VALUES ( N'Putumayo', 1); 
+INSERT [Departament] VALUES ( N'Quindío', 1); 
+INSERT [Departament] VALUES ( N'Risaralda', 1); 
+INSERT [Departament] VALUES ( N'San Andrés, Providencia y Santa Catalina', 1); 
+INSERT [Departament] VALUES ( N'Santander', 1); 
+INSERT [Departament] VALUES ( N'Sucre', 1); 
+INSERT [Departament] VALUES ( N'Tolima', 1); 
+INSERT [Departament] VALUES ( N'Valle del Cauca', 1); 
+INSERT [Departament] VALUES ( N'Vaupés', 1); 
+INSERT [Departament] VALUES ( N'Vichada', 1);
